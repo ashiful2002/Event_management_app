@@ -12,11 +12,14 @@ import UpcommingEvents from "../Pages/UpcomngEvets/UpcomingEvents";
 import axios from "axios";
 import EventDetails from "../Pages/EventDetails/EventDetails";
 import MyJoinedEvents from "../Pages/MyJoinedEvents/MyJoinedEvents";
+import EditEvents from "../Pages/ManageEvents/EditEvents/EditEvents";
+import Loading from "../Components/Loading/Loading";
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     // errorElement: <ErrorPage />,
+    hydrateFallbackElement: <Loading />,
     children: [
       {
         path: "/",
@@ -83,6 +86,18 @@ export const router = createBrowserRouter([
             <MyJoinedEvents />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/update-event/:id",
+        element: (
+          <PrivateRoute>
+            <EditEvents />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          axios
+            .get(`http://localhost:3000/events/${params.id}`)
+            .then((res) => res.data),
       },
       ///
       {

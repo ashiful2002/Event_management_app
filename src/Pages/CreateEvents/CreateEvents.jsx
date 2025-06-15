@@ -11,31 +11,45 @@ const CreateEvents = () => {
   const { user } = useContext(AuthContext);
   const [eventDate, setEventDate] = useState(null);
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const title = form.title.value;
     const description = form.description.value;
     const eventType = form.type.value;
     const location = form.location.value;
-    const thumbnail = form.thumbnail.value;
+    const imageFile = form.thumbnail.files[0];
+
     if (!eventDate || eventDate < new Date()) {
       toast("Please select a valid future date");
       return;
     }
+
+    const formData = new FormData();
+    formData.append("image", imageFile);
+    const imgbbApiKey = "c44c0a8f86162e6eabae13acb609c636";
+    const imgbbUrl = `https://api.imgbb.com/1/upload?key=${imgbbApiKey}`;
+
+    const imgRes = await axios.post(imgbbUrl, formData);
+    const imageUrl = imgRes?.data?.data?.url;
     const eventData = {
       title,
       description,
       eventType,
       location,
-      thumbnail,
+      thumbnail: imageUrl,
       date: eventDate.toISOString(),
       createdBy: user?.email,
     };
     console.log("created event:", eventData);
-
+    const token = await user.getIdToken();
+    // console.log("firebase token", token);
     axios
-      .post("http://localhost:3000/events", eventData)
+      .post("http://localhost:3000/events", eventData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         if (res.data.insertedId || res.data.success) {
           toast.success("Event created successfully!");
@@ -91,10 +105,18 @@ const CreateEvents = () => {
             <option>Plantation</option>
             <option>Donation</option>
           </select>
-          <input
+          {/* <input
             name="thumbnail"
             type="text"
             placeholder="Thumbnail Image URL"
+            className="input input-bordered w-full"
+            required
+          /> */}
+          <input
+            name="thumbnail"
+            type="file"
+            accept="image/*"
+            // placeholder="Thumbnail Image URL"
             className="input input-bordered w-full"
             required
           />

@@ -3,18 +3,31 @@ import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../../Context/AuthContext";
 import ProfileDropdown from "./ProfileDropDown";
 import ThemeToggle from "./ThemeToggle";
+import Swal from "sweetalert2";
 
 const NavbarEnd = () => {
   const { user, signOutUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleSignOut = () => {
-    signOutUser()
-      .then((res) => {
-        navigate("/");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    Swal.fire({
+      title: "Do you want to sign out?",
+      text: "You will be logged out of your account.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, sign out",
+      cancelButtonText: "Cancel",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        signOutUser()
+          .then(() => {
+            Swal.fire("signed out");
+            navigate("/");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    });
   };
   return (
     <div>
@@ -28,7 +41,6 @@ const NavbarEnd = () => {
           Signin
         </Link>
       )}
-    
     </div>
   );
 };

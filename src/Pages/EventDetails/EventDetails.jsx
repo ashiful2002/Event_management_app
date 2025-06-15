@@ -22,6 +22,9 @@ const EventDetails = () => {
   }, [user, event._id]);
 
   const handleJoin = () => {
+    if (!user) {
+      return
+    }
     const joinedData = {
       ...event,
       eventId: event._id,

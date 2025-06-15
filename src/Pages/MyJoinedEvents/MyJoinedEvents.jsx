@@ -13,7 +13,10 @@ const MyJoinedEvents = () => {
       axios
         .get(`http://localhost:3000/joined-events/${user.email}`)
         .then((res) => {
-          setJoinedEvents(res.data);
+          const sortedEvents = res.data.sort((a, b) => {
+            new Date(a.date) - new Date(b.date);
+          });
+          setJoinedEvents(sortedEvents);
           setLoading(false);
         })
         .catch((err) => {
@@ -38,7 +41,8 @@ const MyJoinedEvents = () => {
             <div
               key={event._id}
               className="p-4 border rounded-lg shadow-md bg-white"
-            >{console.log(event)}
+            >
+              {console.log(event)}
               <img
                 src={event.thumbnail}
                 alt={event.title}

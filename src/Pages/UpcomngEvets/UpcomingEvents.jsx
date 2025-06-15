@@ -4,19 +4,51 @@ import { Link } from "react-router";
 
 const UpcomingEvents = () => {
   const [events, setEvents] = useState([]);
+  const [eventType, setEventType] = useState("");
+  const [searchItem, setSearchItem] = useState("");
   useEffect(() => {
-    axios.get("http://localhost:3000/events").then((res) => {
-      const today = new Date();
-      const filteredDate = res.data.filter(
-        (event) => new Date(event.date) > today
-      );
-      setEvents(filteredDate);
-    });
-  }, []);
+    axios
+      .get("http://localhost:3000/events", {
+        params: {
+          type: eventType,
+          search: searchItem,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+
+        setEvents(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [eventType, searchItem]);
   return (
     <>
       <section className="py-12 bg-base-200 min-h-screen">
         <h2 className="text-3xl font-bold text-center mb-8">Upcoming Events</h2>
+
+        {/* search and filter */}
+
+        <div className="flex items-center justify-around gap-5 my-5">
+          <select
+            className="select select-borderes"
+            value={eventType}
+            onChange={(e) => setEventType(e.target.value)}
+          >
+            <option value="">All Types</option>
+            <option value="Donation">Donation</option>
+            <option value="Plantation">Plantation</option>
+            <option value="Cleanup">Cleanup</option>
+          </select>
+          <input
+            className="input"
+            type="text"
+            placeholder="Search by event name"
+            value={searchItem}
+            onChange={(e) => setSearchItem(e.target.value)}
+          />
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6 max-w-6xl mx-auto">
           {events.map((event) => (
