@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import { Helmet } from "react-helmet";
+import Loading from "../../Components/Loading/Loading";
 const CreateEvents = () => {
   const { user } = useContext(AuthContext);
   const [eventDate, setEventDate] = useState(null);
@@ -21,10 +22,10 @@ const CreateEvents = () => {
     const imageFile = form.thumbnail.files[0];
 
     if (!eventDate || eventDate < new Date()) {
-      toast("Please select a valid future date");
+      toast.error("Please select a valid future date");
       return;
     }
-
+    toast.success("uploadiong image, and it's took some second");
     const formData = new FormData();
     formData.append("image", imageFile);
     const imgbbApiKey = "c44c0a8f86162e6eabae13acb609c636";
@@ -97,10 +98,9 @@ const CreateEvents = () => {
             name="type"
             className="select select-bordered w-full"
             required
+            defaultValue={`Select Event Type`}
           >
-            <option disabled selected>
-              Select Event Type
-            </option>
+            <option disabled={true}> Select Event Type</option>
             <option>Cleanup</option>
             <option>Plantation</option>
             <option>Donation</option>
@@ -117,7 +117,7 @@ const CreateEvents = () => {
             type="file"
             accept="image/*"
             // placeholder="Thumbnail Image URL"
-            className="input input-bordered w-full"
+            className=" file-input w-full"
             required
           />
           <input

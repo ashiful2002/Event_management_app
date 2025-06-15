@@ -23,7 +23,8 @@ const EventDetails = () => {
 
   const handleJoin = () => {
     if (!user) {
-      return
+      toast("PLease sign in to join the event");
+      return;
     }
     const joinedData = {
       ...event,

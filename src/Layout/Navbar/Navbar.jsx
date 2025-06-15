@@ -47,7 +47,8 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to="/" className="btn btn-ghost text-xl">
-          Logo
+          <span className="text-violet-500 -mr-1.5">SO</span>
+          <span className="text-amber-500">DEV</span>
         </Link>
       </div>
       <div className="navbar-center hidden md:flex">
@@ -55,7 +56,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <NavbarEnd />
-          <ThemeToggle />
+        <ThemeToggle />
       </div>
     </div>
   );
