@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import Divider from "../../Components/Divider/Divider";
 import SocialLogin from "../../Components/GoogleLogin/GoogleLogin";
 import { AuthContext } from "../../Context/AuthContext";
+import Title from "../../Components/Title/Title";
 
 const Signin = () => {
   const { signInUser } = useContext(AuthContext);
@@ -20,6 +21,7 @@ const Signin = () => {
   };
   return (
     <div>
+      <Title title={'Sign in'}/>
       <div className="flex items-center justify-center min-h-[50vh]">
         <form onSubmit={handleSignin}>
           <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
@@ -55,7 +57,6 @@ const Signin = () => {
             <Divider />
             <SocialLogin />
           </fieldset>
-          
         </form>
       </div>
     </div>

@@ -4,11 +4,12 @@ import { Link, useLoaderData } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
+import Title from "../../Components/Title/Title";
 
 const ManageEvents = () => {
   const events = useLoaderData();
   const { user } = useContext(AuthContext);
-
+ 
   const usersEvents = events.filter((event) => event.createdBy === user.email);
   const handleDeleteEvent = (id) => {
     Swal.fire({
@@ -45,6 +46,8 @@ const ManageEvents = () => {
 
   return (
     <div>
+            <Title title="Manage Events" />
+
       {
         <section className="py-12 bg-base-200 min-h-screen">
           <h2 className="text-3xl font-bold text-center mb-8">Manage Events</h2>

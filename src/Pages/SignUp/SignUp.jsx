@@ -7,6 +7,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase.init";
 import { ToastContainer, toast } from "react-toastify";
 import { Helmet } from "react-helmet";
+import Title from "../../Components/Title/Title";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -47,9 +48,8 @@ const SignUp = () => {
   };
   return (
     <div className="flex items-center justify-center min-h-[50vh]">
-      <Helmet>
-        <title>Login | Event management</title>
-      </Helmet>
+      <Title title="Sign up" />
+
       <form onSubmit={handleCreateUser}>
         <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
           <legend className="fieldset-legend">Sign Up</legend>

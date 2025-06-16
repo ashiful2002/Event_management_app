@@ -8,6 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import { Helmet } from "react-helmet";
 import Loading from "../../Components/Loading/Loading";
+import Title from "../../Components/Title/Title";
 const CreateEvents = () => {
   const { user } = useContext(AuthContext);
   const [eventDate, setEventDate] = useState(null);
@@ -69,9 +70,7 @@ const CreateEvents = () => {
 
   return (
     <div>
-      <Helmet>
-        <title>Create events | Event management</title>
-      </Helmet>
+      <Title title={"Create Events"} />
       <div className="max-w-2xl mx-auto py-10 px-4">
         <h2 className="text-3xl font-bold mb-6 text-center">
           Create New Event

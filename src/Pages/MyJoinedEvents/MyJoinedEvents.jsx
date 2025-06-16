@@ -1,21 +1,42 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/AuthContext";
 import axios from "axios";
+import useAxiosToken from "../../Hooks/useAxiosToken";
+import Title from "../../Components/Title/Title";
 
 const MyJoinedEvents = () => {
+  const axiosSecure = useAxiosToken();
   const { user } = useContext(AuthContext);
   const [joinedEvents, setJoinedEvents] = useState([]);
   const [loading, setLoading] = useState(true);
-  console.log(joinedEvents);
+  const accessToken = user.accessToken;
 
   useEffect(() => {
     if (user?.email) {
-      axios
-        .get(`http://localhost:3000/joined-events/${user.email}`)
+      // axios
+      //   .get(`http://localhost:3000/joined-events/${user.email}`, {
+      //     headers: {
+      //       authorization: `Bearer ${accessToken}`,
+      //     },
+      //   })
+      fetch(`http://localhost:3000/joined-events/${user.email}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${accessToken}`,
+        },
+      })
         .then((res) => {
-          const sortedEvents = res.data.sort((a, b) => {
-            new Date(a.date) - new Date(b.date);
-          });
+          if (!res.ok) {
+            throw new Error("Failed to fetch joined events");
+          } else {
+            return res.json();
+          }
+        })
+        .then((data) => {
+          const sortedEvents = data.sort(
+            (a, b) => new Date(a.date) - new Date(b.date)
+          );
           setJoinedEvents(sortedEvents);
           setLoading(false);
         })
@@ -29,9 +50,12 @@ const MyJoinedEvents = () => {
   if (loading) {
     return <p className="text-center mt-10">Loading your joined events...</p>;
   }
+  // console.log("Toen in the context", user.accessToken);
 
   return (
     <div className="max-w-5xl mx-auto py-10 px-4">
+            <Title title="Joined Events" />
+
       <h2 className="text-3xl font-bold mb-6">My Joined Events</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {joinedEvents.length === 0 ? (
@@ -42,7 +66,6 @@ const MyJoinedEvents = () => {
               key={event._id}
               className="p-4 border rounded-lg shadow-md bg-white"
             >
-              {console.log(event)}
               <img
                 src={event.thumbnail}
                 alt={event.title}

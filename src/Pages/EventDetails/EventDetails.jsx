@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
+import Title from "../../Components/Title/Title";
 
 const EventDetails = () => {
   const event = useLoaderData();
@@ -49,14 +50,15 @@ const EventDetails = () => {
   };
   return (
     <div>
-      {" "}
+     <Title title={'Event Details'}/>
       <div className="max-w-3xl mx-auto p-6 bg-white rounded-xl shadow-md mt-10">
         <img
           src={event.thumbnail}
           alt={event.title}
           className="w-full h-60 object-cover rounded-lg"
         />
-        <h2 className="text-3xl font-bold my-4">{event.title}</h2>
+        <h2 className="text-3xl font-bold capitalize my-4">{event.title}</h2>
+        <p className="text-gray-600 mb-2 px-3 first-letter:uppercase">{event.description}</p>
         <p className="text-gray-700 mb-2">📍 Location: {event.location}</p>
         <p className="text-gray-700 mb-2">🗂 Type: {event.eventType}</p>
         <p className="text-gray-700 mb-2">
@@ -67,8 +69,6 @@ const EventDetails = () => {
             day: "numeric",
           })}
         </p>
-        <p className="text-gray-600 mb-4">{event.description}</p>
-
         {isJoined ? (
           <button disabled className="btn btn-primary">
             Already joined

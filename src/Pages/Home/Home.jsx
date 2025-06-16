@@ -5,15 +5,14 @@ import Gallery from "./Sections/Gallery";
 import NewsLetter from "./Sections/NewsLetter";
 import { useLoaderData } from "react-router";
 import { Helmet } from "react-helmet";
+import Title from "../../Components/Title/Title";
 
 const Home = () => {
   const events = useLoaderData();
 
   return (
     <div>
-      <Helmet>
-        <title>Home | Event management</title>
-      </Helmet>
+      <Title title="Home" />
       <Banner />
       <Feature />
       <Gallery events={events} />

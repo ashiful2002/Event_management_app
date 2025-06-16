@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
+import Title from "../../Components/Title/Title";
 
 const UpcomingEvents = () => {
   const [events, setEvents] = useState([]);
@@ -15,8 +16,6 @@ const UpcomingEvents = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
-
         setEvents(res.data);
       })
       .catch((err) => {
@@ -25,6 +24,8 @@ const UpcomingEvents = () => {
   }, [eventType, searchItem]);
   return (
     <>
+          <Title title="Upcomming Events" />
+
       <section className="py-12 bg-base-200 min-h-screen">
         <h2 className="text-3xl font-bold text-center mb-8">Upcoming Events</h2>
 
@@ -41,13 +42,39 @@ const UpcomingEvents = () => {
             <option value="Plantation">Plantation</option>
             <option value="Cleanup">Cleanup</option>
           </select>
-          <input
+          {/* <input
             className="input"
             type="text"
             placeholder="Search by event name"
             value={searchItem}
             onChange={(e) => setSearchItem(e.target.value)}
-          />
+          /> */}
+          <label className="input">
+            <svg
+              className="h-[1em] opacity-50"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <g
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                strokeWidth="2.5"
+                fill="none"
+                stroke="currentColor"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+              </g>
+            </svg>
+            <input
+              className=""
+              type="text"
+              placeholder="Search by event name"
+              value={searchItem}
+              onChange={(e) => setSearchItem(e.target.value)}
+            />
+            
+          </label>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6 max-w-6xl mx-auto">

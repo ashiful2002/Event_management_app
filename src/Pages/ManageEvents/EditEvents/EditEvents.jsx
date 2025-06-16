@@ -13,11 +13,11 @@ const EditEvents = () => {
 
   const handleUpdateSubmit = (e) => {
     e.preventDefault();
-
+   
     const form = e.target;
     const formData = new FormData(form);
     const updatedEvent = Object.fromEntries(formData.entries());
-    updatedEvent.data = new Date(eventDate).toISOString();
+    updatedEvent.date = new Date(eventDate).toISOString();
     axios
       .put(`http://localhost:3000/events/${event._id}`, updatedEvent)
       .then((res) => {

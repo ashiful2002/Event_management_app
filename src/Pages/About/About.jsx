@@ -1,12 +1,11 @@
 import React from "react";
+import Title from "../../Components/Title/Title";
 
 const About = () => {
   return (
     <div>
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi saepe
-      doloribus explicabo minima, excepturi ducimus accusantium voluptatum at
-      fuga pariatur magnam animi reprehenderit in. Inventore saepe repellendus
-      quas est perspiciatis.
+       <Title title={'Sign in'}/>
+     
     </div>
   );
 };
