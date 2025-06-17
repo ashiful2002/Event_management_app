@@ -1,5 +1,8 @@
 # 🌱 SODEV – SOcial DEVelopment
 
+## there was a issue in my category. different was shown in mobile app and website. in support session instructor "SHAHRIAR" vai suggest me to this category from mobile app. because i was started this before and make this as note. Thanks.
+
+
 SODEV is a community-driven event management platform where users can create, join, and track social development events in their local area.
 
 ### 🔗 Live Site:
