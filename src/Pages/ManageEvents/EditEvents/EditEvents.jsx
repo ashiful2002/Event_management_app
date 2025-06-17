@@ -19,7 +19,7 @@ const EditEvents = () => {
     const updatedEvent = Object.fromEntries(formData.entries());
     updatedEvent.date = new Date(eventDate).toISOString();
     axios
-      .put(`http://localhost:3000/events/${event._id}`, updatedEvent)
+      .put(`https://event-management-server-five.vercel.app/events/${event._id}`, updatedEvent)
       .then((res) => {
         console.log(res);
         if (res.data.modifiedCount) {

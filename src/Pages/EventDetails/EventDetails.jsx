@@ -14,7 +14,7 @@ const EventDetails = () => {
     if (user?.email) {
       axios
         .get(
-          `http://localhost:3000/joined-events/${event._id}?email=${user?.email}`
+          `https://event-management-server-five.vercel.app/joined-events/${event._id}?email=${user?.email}`
         )
         .then((res) => {
           setIsJoined(res.data.joined);
@@ -35,7 +35,7 @@ const EventDetails = () => {
     };
 
     axios
-      .patch("http://localhost:3000/joined-events", joinedData)
+      .patch("https://event-management-server-five.vercel.app/joined-events", joinedData)
       .then((res) => {
         if (res.data.insertedId || res.data.success) {
           toast.success("You have joined the event");

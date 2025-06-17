@@ -23,7 +23,7 @@ const ManageEvents = () => {
     })
       .then((result) => {
         if (result.isConfirmed) {
-          axios.delete(`http://localhost:3000/events/${id}`).then((res) => {
+          axios.delete(`https://event-management-server-five.vercel.app/events/${id}`).then((res) => {
             if (res.data.deleteCount > 0) {
               // setStateEvent((prevEvents) =>
               //   prevEvents.filter((e) => e._id !== id)

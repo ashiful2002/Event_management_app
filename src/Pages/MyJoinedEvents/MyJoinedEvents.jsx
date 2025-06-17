@@ -14,12 +14,12 @@ const MyJoinedEvents = () => {
   useEffect(() => {
     if (user?.email) {
       // axios
-      //   .get(`http://localhost:3000/joined-events/${user.email}`, {
+      //   .get(`https://event-management-server-five.vercel.app/joined-events/${user.email}`, {
       //     headers: {
       //       authorization: `Bearer ${accessToken}`,
       //     },
       //   })
-      fetch(`http://localhost:3000/joined-events/${user.email}`, {
+      fetch(`https://event-management-server-five.vercel.app/joined-events/${user.email}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

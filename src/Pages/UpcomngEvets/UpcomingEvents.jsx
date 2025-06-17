@@ -9,7 +9,7 @@ const UpcomingEvents = () => {
   const [searchItem, setSearchItem] = useState("");
   useEffect(() => {
     axios
-      .get("http://localhost:3000/events", {
+      .get("https://event-management-server-five.vercel.app/events", {
         params: {
           type: eventType,
           search: searchItem,

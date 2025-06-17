@@ -47,7 +47,7 @@ const CreateEvents = () => {
     const token = await user.getIdToken();
     // console.log("firebase token", token);
     axios
-      .post("http://localhost:3000/events", eventData, {
+      .post("https://event-management-server-five.vercel.app/events", eventData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
