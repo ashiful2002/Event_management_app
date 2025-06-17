@@ -50,8 +50,7 @@ const MyJoinedEvents = () => {
   if (loading) {
     return <p className="text-center mt-10">Loading your joined events...</p>;
   }
-  // console.log("Toen in the context", user.accessToken);
-
+  // this connti shoud be done before 
   return (
     <div className="max-w-5xl mx-auto py-10 px-4">
             <Title title="Joined Events" />
