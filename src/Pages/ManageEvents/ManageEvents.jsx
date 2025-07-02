@@ -9,7 +9,7 @@ import Title from "../../Components/Title/Title";
 const ManageEvents = () => {
   const events = useLoaderData();
   const { user } = useContext(AuthContext);
- 
+
   const usersEvents = events.filter((event) => event.createdBy === user.email);
   const handleDeleteEvent = (id) => {
     Swal.fire({
@@ -23,19 +23,19 @@ const ManageEvents = () => {
     })
       .then((result) => {
         if (result.isConfirmed) {
-          axios.delete(`https://event-management-server-five.vercel.app/events/${id}`).then((res) => {
-            if (res.data.deleteCount > 0) {
-              // setStateEvent((prevEvents) =>
-              //   prevEvents.filter((e) => e._id !== id)
-              // );
-
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success",
-              });
-            }
-          });
+          axios
+            .delete(
+              `https://event-management-server-five.vercel.app/events/${id}`
+            )
+            .then((res) => {
+              if (res.data.deleteCount > 0) {
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your file has been deleted.",
+                  icon: "success",
+                });
+              }
+            });
         }
       })
       .catch((err) => {
@@ -46,16 +46,19 @@ const ManageEvents = () => {
 
   return (
     <div>
-            <Title title="Manage Events" />
+      <Title title="Manage Events" />
 
       {
         <section className="py-12 bg-base-200 min-h-screen">
           <h2 className="text-3xl font-bold text-center mb-8">Manage Events</h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 px-6 max-w-6xl mx-auto ">
             {usersEvents.length > 0 ? (
               usersEvents.map((event) => (
-                <div key={event._id} className="card bg-white shadow-xl">
+                <div
+                  key={event._id}
+                  className="card bg-white dark:bg-neutral-900 shadow-xl "
+                >
                   <figure>
                     <img
                       src={event.thumbnail}
@@ -84,16 +87,16 @@ const ManageEvents = () => {
                       })}
                     </p>
 
-                    <div className="flex items-center justify-center gap-3">
+                    <div className="flex items-center justify-center gap-3 mt-3">
                       <Link
                         to={`/update-event/${event._id}`}
-                        className="btn btn-warning"
+                        className="btn btn-warning btn-sm"
                       >
                         <FaEdit />
                         Edit Events
                       </Link>
                       <button
-                        className="btn btn-warning"
+                        className="btn btn-warning btn-sm"
                         onClick={() => handleDeleteEvent(event._id)}
                       >
                         <FaTrash />

@@ -6,8 +6,6 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
-import { Helmet } from "react-helmet";
-import Loading from "../../Components/Loading/Loading";
 import Title from "../../Components/Title/Title";
 const CreateEvents = () => {
   const { user } = useContext(AuthContext);
@@ -47,11 +45,15 @@ const CreateEvents = () => {
     const token = await user.getIdToken();
     // console.log("firebase token", token);
     axios
-      .post("https://event-management-server-five.vercel.app/events", eventData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .post(
+        "https://event-management-server-five.vercel.app/events",
+        eventData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         if (res.data.insertedId || res.data.success) {
           toast.success("Event created successfully!");
@@ -70,7 +72,8 @@ const CreateEvents = () => {
 
   return (
     <div>
-      <Title title={"Create Events"} />
+      <Title title="Create events" />
+
       <div className="max-w-2xl mx-auto py-10 px-4">
         <h2 className="text-3xl font-bold mb-6 text-center">
           Create New Event
@@ -128,6 +131,7 @@ const CreateEvents = () => {
           />
           <label className="block font-medium">Event Date (future only):</label>
           <DatePicker
+            showIcon 
             selected={eventDate}
             onChange={(date) => setEventDate(date)}
             minDate={new Date()}

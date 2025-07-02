@@ -5,7 +5,6 @@ import useAxiosToken from "../../Hooks/useAxiosToken";
 import Title from "../../Components/Title/Title";
 
 const MyJoinedEvents = () => {
-  const axiosSecure = useAxiosToken();
   const { user } = useContext(AuthContext);
   const [joinedEvents, setJoinedEvents] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,12 +12,6 @@ const MyJoinedEvents = () => {
 
   useEffect(() => {
     if (user?.email) {
-      // axios
-      //   .get(`https://event-management-server-five.vercel.app/joined-events/${user.email}`, {
-      //     headers: {
-      //       authorization: `Bearer ${accessToken}`,
-      //     },
-      //   })
       fetch(`https://event-management-server-five.vercel.app/joined-events/${user.email}`, {
         method: "GET",
         headers: {
@@ -53,37 +46,53 @@ const MyJoinedEvents = () => {
   // this connti shoud be done before 
   return (
     <div className="max-w-5xl mx-auto py-10 px-4">
-            <Title title="Joined Events" />
+  <Title title="Joined Events" />
 
-      <h2 className="text-3xl font-bold mb-6">My Joined Events</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {joinedEvents.length === 0 ? (
-          <p>You haven't joined any events yet.</p>
-        ) : (
-          joinedEvents.map((event) => (
-            <div
-              key={event._id}
-              className="p-4 border rounded-lg shadow-md bg-white"
-            >
-              <img
-                src={event.thumbnail}
-                alt={event.title}
-                className="w-full h-40 object-cover rounded"
-              />
-              <h3 className="text-xl font-semibold mt-2">{event.title}</h3>
-              <p className="text-gray-600">{event.location}</p>
-              <p className="text-gray-500 text-sm">
+  <h2 className="text-3xl font-bold mb-6">My Joined Events</h2>
+
+  {joinedEvents.length === 0 ? (
+    <p>You haven't joined any events yet.</p>
+  ) : (
+    <div className="overflow-x-auto">
+      <table className="table table-zebra w-full">
+        {/* head */}
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Thumbnail</th>
+            <th>Title</th>
+            <th>Location</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {joinedEvents.map((event, index) => (
+            <tr key={event._id}>
+              <th>{index + 1}</th>
+              <td>
+                <img
+                  src={event.thumbnail}
+                  alt={event.title}
+                  className="w-16 h-12 object-cover rounded"
+                />
+              </td>
+              <td className="font-medium">{event.title}</td>
+              <td>{event.location}</td>
+              <td>
                 {new Date(event.date).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "short",
                   day: "numeric",
                 })}
-              </p>
-            </div>
-          ))
-        )}
-      </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
+  )}
+</div>
+
   );
 };
 

@@ -2,7 +2,7 @@ import React from "react";
 
 const HomePageSections = () => {
   return (
-    <div>
+    <div className="bg-gray-">
       {/* 🖼️ Banner Section */}
       <div
         className="hero min-h-screen"

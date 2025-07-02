@@ -1,10 +1,12 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import { GalleryData as events } from "./GalleryData";
 const Gallery = () => {
+  // const events = useLoaderData();
+
   return (
     <>
-      {/* 🖼️ Gallery Section */}
+      {/*  Gallery Section */}
       <section className="py-16 bg-base-200">
         <h2 className="text-3xl font-bold mb-10 text-center">Event Gallery</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto px-4">
@@ -19,7 +21,9 @@ const Gallery = () => {
               </figure>
               <div className="card-body ">
                 <h2 className="card-title">{event.title}</h2>
-                <p className="text-gray-500 -mb-4">{event.description}</p>
+                <p className="text-gray-500 dark:text-gray-300 -mb-4">
+                  {event.description}
+                </p>
                 <h2>
                   Type:
                   <span className="badge badge-dash badge-sm">
@@ -32,7 +36,7 @@ const Gallery = () => {
                     {event.location}
                   </span>
                 </h2>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-300">
                   Date:{" "}
                   {new Date(event.date).toLocaleDateString("en-US", {
                     year: "numeric",
@@ -41,13 +45,7 @@ const Gallery = () => {
                   })}
                 </p>
 
-                <div className="card-actions justify-end">
-                  {/* <Link >
-                    <button className="btn btn-primary btn-sm">
-                      View event
-                    </button>
-                  </Link> */}
-                </div>
+                <div className="card-actions justify-end"></div>
               </div>
             </div>
           ))}

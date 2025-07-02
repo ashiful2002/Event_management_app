@@ -24,7 +24,7 @@ const UpcomingEvents = () => {
   }, [eventType, searchItem]);
   return (
     <>
-          <Title title="Upcomming Events" />
+      <Title title="Upcomming Events" />
 
       <section className="py-12 bg-base-200 min-h-screen">
         <h2 className="text-3xl font-bold text-center mb-8">Upcoming Events</h2>
@@ -73,7 +73,6 @@ const UpcomingEvents = () => {
               value={searchItem}
               onChange={(e) => setSearchItem(e.target.value)}
             />
-            
           </label>
         </div>
 
@@ -87,12 +86,18 @@ const UpcomingEvents = () => {
                   className="h-48 w-full object-cover"
                 />
               </figure>
-              <div className="card-body">
-                <h3 className="text-xl font-bold">{event.title}</h3>
-                <p className="text-gray-600">📍 {event.location}</p>
-                <p className="text-gray-500">🗂 {event.eventType}</p>
-                <p className="text-gray-700">
-                  📅{" "}
+              <div className="card-body dark:bg-gray-600 ">
+                <h3 className="text-xl font-bold dark:text-white">
+                  {event.title}
+                </h3>
+                <p className="text-gray-600 dark:text-white capitalize">
+                  📍 {event.location}
+                </p>
+                <p className="text-gray-600 dark:text-white capitalize">
+                  🗂 {event.eventType}
+                </p>
+                <p className="text-gray-600 dark:text-white capitalize">
+                  📅
                   {new Date(event.date).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "short",

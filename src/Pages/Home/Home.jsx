@@ -11,7 +11,7 @@ const Home = () => {
   const events = useLoaderData();
 
   return (
-    <div>
+    <div className="">
       <Title title="Home" />
       <Banner />
       <Feature />

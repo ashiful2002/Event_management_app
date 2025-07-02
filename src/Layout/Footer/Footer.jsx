@@ -1,22 +1,49 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../Context/AuthContext";
+import { NavLink, useNavigate } from "react-router";
 
 const Footer = () => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const links = (
+    <>
+      <li>
+        <NavLink to="/">Home</NavLink>
+      </li>
+
+      {user ? (
+        <>
+          <li>
+            <NavLink to="/create-event">Create Event</NavLink>
+          </li>
+          <li>
+            <NavLink to="/manage-events">Manage Event</NavLink>
+          </li>
+          <li>
+            <NavLink to="/my-joined-events">My Events</NavLink>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <NavLink to="/upcoming-events">Upcomming Events</NavLink>
+          </li>
+        </>
+      )}
+    </>
+  );
   return (
     <div className="">
-      <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
+      <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10 flex items-center justify-between">
         <>
           <aside>
             <div className="text-xl font-bold">
               <span className="text-violet-500">SO</span>
               <span className="text-amber-500">DEV</span>
             </div>
-            <p>
-              SODEV – (SOcial DEVelopment)
-              <br />
-              &copy; {new Date().getFullYear()} All right preserved.
-            </p>
+            <p>SODEV &copy; {new Date().getFullYear()} All right preserved.</p>
           </aside>
-
+          <ul className="flex items-center gap-4">{links}</ul>
           <nav>
             <h6 className="footer-title">Social</h6>
             <div className="grid grid-flow-col gap-4">

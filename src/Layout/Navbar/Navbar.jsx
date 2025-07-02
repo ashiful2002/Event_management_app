@@ -10,17 +10,17 @@ const Navbar = () => {
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
-      
+
       <li>
         <NavLink to="/upcoming-events">Upcomming Events</NavLink>
       </li>
     </>
   );
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar bg-base-100 shadow-sm stickey top-0 z-10">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -54,10 +54,10 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <NavbarEnd />
-        <ThemeToggle />
+        {/* <ThemeToggle /> */}
       </div>
     </div>
   );
 };
-
+//  afdgadfg
 export default Navbar;

@@ -35,7 +35,10 @@ const EventDetails = () => {
     };
 
     axios
-      .patch("https://event-management-server-five.vercel.app/joined-events", joinedData)
+      .patch(
+        "https://event-management-server-five.vercel.app/joined-events",
+        joinedData
+      )
       .then((res) => {
         if (res.data.insertedId || res.data.success) {
           toast.success("You have joined the event");
@@ -50,18 +53,26 @@ const EventDetails = () => {
   };
   return (
     <div>
-     <Title title={'Event Details'}/>
-      <div className="max-w-3xl mx-auto p-6 bg-white rounded-xl shadow-md mt-10">
+      <Title title={"Event Details"} />
+      <div className="max-w-3xl mx-auto p-6 bg-white dark:bg-neutral-900  rounded-xl shadow-md mt-10">
         <img
           src={event.thumbnail}
           alt={event.title}
           className="w-full h-60 object-cover rounded-lg"
         />
-        <h2 className="text-3xl font-bold capitalize my-4">{event.title}</h2>
-        <p className="text-gray-600 mb-2 px-3 first-letter:uppercase">{event.description}</p>
-        <p className="text-gray-700 mb-2">📍 Location: {event.location}</p>
-        <p className="text-gray-700 mb-2">🗂 Type: {event.eventType}</p>
-        <p className="text-gray-700 mb-2">
+        <h2 className="text-3xl font-bold capitalize my-4 dark:text-neutral-100">
+          {event.title}
+        </h2>
+        <p className="text-gray-600 mb-2 px-3 first-letter:uppercase dark:text-neutral-100">
+          {event.description}
+        </p>
+        <p className="text-gray-700 mb-2 dark:text-neutral-100">
+          📍 Location: {event.location}
+        </p>
+        <p className="text-gray-700 mb-2 dark:text-neutral-100">
+          🗂 Type: {event.eventType}
+        </p>
+        <p className="text-gray-700 mb-2 dark:text-neutral-100">
           📅 Date:{" "}
           {new Date(event.date).toLocaleDateString("en-US", {
             year: "numeric",
