@@ -33,11 +33,14 @@ const NavbarEnd = () => {
     <div>
       {user && <ProfileDropdown user={user} />}
       {user ? (
-        <button onClick={handleSignOut} className="btn ml-2">
+        <button
+          onClick={handleSignOut}
+          className="btn ml-2 btn-outline btn-primary"
+        >
           Sign Out
         </button>
       ) : (
-        <Link to="/signin" className="btn ml-2">
+        <Link to="/signin" className="btn ml-2 btn-outline btn-primary">
           Signin
         </Link>
       )}

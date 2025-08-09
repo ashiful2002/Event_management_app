@@ -4,14 +4,13 @@ import { useLocation, useNavigate } from "react-router";
 const SocialLogin = () => {
   const navigate = useNavigate();
   const location = useLocation();
-const from = location.state?.from?.pathname || "/"; // fallback path
+  const from = location.state?.from?.pathname || "/"; // fallback path
 
   const { GoogleSignIn } = useContext(AuthContext);
   const handleGoogleLogin = () => {
     GoogleSignIn()
       .then((res) => {
         navigate(from, { replace: true });
-
       })
       .catch((err) => console.log(err));
   };
@@ -49,7 +48,7 @@ const from = location.state?.from?.pathname || "/"; // fallback path
             ></path>
           </g>
         </svg>
-        Login with Google
+        Continue with Google
       </button>
     </div>
   );
