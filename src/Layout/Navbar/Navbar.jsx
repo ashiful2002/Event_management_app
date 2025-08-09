@@ -22,7 +22,7 @@ const Navbar = () => {
             <NavLink to="/manage-events">Manage Event</NavLink>
           </li>
           <li>
-            <NavLink to="/my-joined-events">My Events</NavLink>
+            <NavLink to="/my-joined-events">My Joined Events</NavLink>
           </li>
         </>
       ) : (

@@ -63,7 +63,7 @@ const ManageEvents = () => {
                     <img
                       src={event.thumbnail}
                       alt={event.title}
-                      className="h-48 w-full object-cover"
+                      className="h-48 w-full object-contain"
                     />
                   </figure>
                   <div className="card-body">
@@ -71,15 +71,20 @@ const ManageEvents = () => {
                       {event.title}
                     </h3>
                     <p>
-                      Desc:{" "}
-                      <span className="text-gray-500 px-2">
+                      Desc:
+                      <span className="text-gray-500 px-1">
                         {event.description}
                       </span>
                     </p>
-                    <p className="text-gray-500">📍 {event.location}</p>
-                    <p className="text-gray-500">🗂 {event.eventType}</p>
                     <p className="text-gray-500">
-                      📅{" "}
+                      <strong>Location:📍</strong>
+                      {event.location}
+                    </p>
+                    <p className="text-gray-500">
+                      <strong>Type: 🗂</strong> {event.eventType}
+                    </p>
+                    <p className="text-gray-500">
+                      <strong>Date:📅 </strong>
                       {new Date(event.date).toLocaleDateString("en-US", {
                         year: "numeric",
                         month: "short",
