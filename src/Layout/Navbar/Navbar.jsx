@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
 import NavbarEnd from "./NavbarEnd/NavbarEnd";
-import logo from "../../../public/Sodev_logo.webp";
+import logo from "/Sodev_logo.webp";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);

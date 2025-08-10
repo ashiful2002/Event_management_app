@@ -1,14 +1,19 @@
 # 🌱 SODEV – SOcial DEVelopment
 
-## there was a issue in my category. different was shown in mobile app and website. in support session instructor "SHAHRIAR" vai suggest me to this category from mobile app. because i was started this before and make this as note. Thanks.
 
-
-SODEV is a community-driven event management platform where users can create, join, and track social development events in their local area.
+## SODEV is a community-driven event management platform where users can create, join, and track social development events in their local area.
 
 ### 🔗 Live Site:
 👉 [https://event-management-app-b86d6.web.app/](https://event-management-app-b86d6.web.app/)
 
 ---
+## 📸 Screenshots
+
+<p align="center">
+  <img src="https://github.com/ashiful2002/ashiful2002/blob/main/sodev.jpeg" alt="Home Page" width="700" />
+ 
+</p>
+
 
 ## 📌 Project Purpose
 
@@ -48,3 +53,32 @@ SODEV is designed to empower citizens to take initiative and organize social ser
 - **React Icons** – Icon support
 - **JWT (via backend)** – Authentication
 
+
+
+### 🔹 Backend
+
+- Node.js
+- Express.js
+- MongoDB + Mongoose
+- Stripe (Payment Gateway)
+- CORS
+- Dotenv
+
+
+## Run This Project Locally (Frontend)
+
+
+1. **Clone the Repository**
+
+   git clone https://github.com/ashiful2002/Event_management_app
+   
+2. Navigate to the Project Folder
+
+cd Event_management_app
+
+3. Install Dependencies
+npm install
+
+4. Create a .env File
+   and ask me for env files (because there are private)   
+6. npm run dev

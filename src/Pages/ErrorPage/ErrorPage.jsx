@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router"; // should be react-router-dom, not react-router
 import Title from "../../Components/Title/Title";
 import Lottie from "lottie-react";

@@ -24,8 +24,11 @@ export const router = createBrowserRouter([
       {
         path: "/",
         loader: () =>
-          axios.get("https://event-management-server-five.vercel.app/events").then((res) => res.data),
+          axios
+            .get("https://event-management-server-five.vercel.app/events")
+            .then((res) => res.data),
         element: <Home />,
+        hydrateFallbackElement: <Loading />,
       },
       {
         path: "/about",
@@ -51,7 +54,9 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: () =>
-          axios.get("https://event-management-server-five.vercel.app/events").then((res) => res.data),
+          axios
+            .get("https://event-management-server-five.vercel.app/events")
+            .then((res) => res.data),
       },
       // {
       //   path: "/joined-events",
@@ -77,7 +82,9 @@ export const router = createBrowserRouter([
           </>
         ),
         loader: ({ params }) =>
-          fetch(`https://event-management-server-five.vercel.app/events/${params.id}`),
+          fetch(
+            `https://event-management-server-five.vercel.app/events/${params.id}`
+          ),
       },
       {
         path: "/my-joined-events",
@@ -96,7 +103,9 @@ export const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           axios
-            .get(`https://event-management-server-five.vercel.app/events/${params.id}`)
+            .get(
+              `https://event-management-server-five.vercel.app/events/${params.id}`
+            )
             .then((res) => res.data),
       },
       ///
