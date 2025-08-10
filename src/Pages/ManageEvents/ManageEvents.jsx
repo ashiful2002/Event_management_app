@@ -67,7 +67,7 @@ const ManageEvents = () => {
                     />
                   </figure>
                   <div className="card-body">
-                    <h3 className="text-xl font-bold capitalize">
+                    <h3 className="text-2xl font-semibold capitalize">
                       {event.title}
                     </h3>
                     <p>

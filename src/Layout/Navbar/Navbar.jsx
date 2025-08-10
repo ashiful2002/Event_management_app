@@ -16,6 +16,9 @@ const Navbar = () => {
       {user ? (
         <>
           <li>
+            <NavLink to="/upcoming-events">Upcoming Events</NavLink>
+          </li>
+          <li>
             <NavLink to="/create-event">Create Event</NavLink>
           </li>
           <li>

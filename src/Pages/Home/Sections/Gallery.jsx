@@ -1,57 +1,64 @@
 import React from "react";
-import { Link, useLoaderData } from "react-router";
 import { GalleryData as events } from "./GalleryData";
-const Gallery = () => {
-  // const events = useLoaderData();
 
+const Gallery = () => {
   return (
-    <>
-      {/*  Gallery Section */}
-      <section className="py-16 bg-base-200">
-        <h2 className="text-3xl font-bold mb-10 text-center">Event Gallery</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto px-4">
+    <section className="py-16 bg-base-200">
+      <div className=" mx-auto px-4">
+        {/* Heading */}
+        <h2 className="text-3xl font-bold mb-12 text-center text-primary">
+          Event Gallery
+        </h2>
+
+        {/* Event Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
           {events.map((event, index) => (
-            <div key={index} className="card bg-base-100  shadow-sm">
-              <figure className="w-64 h-48 overflow-hidden mx-auto">
+            <div
+              key={index}
+              className="card bg-base-100 shadow-md hover:shadow-lg transition-all duration-300 rounded-xl overflow-hidden"
+            >
+              {/* Image */}
+              <figure className="h-48 w-full overflow-hidden">
                 <img
                   src={event.thumbnail}
                   alt={event.title}
-                  className="w-full h-full object-cover rounded-xl"
+                  className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
                 />
               </figure>
-              <div className="card-body ">
-                <h2 className="card-title">{event.title}</h2>
-                <p className="text-gray-500 dark:text-gray-300 -mb-4">
+
+              {/* Card Content */}
+              <div className="card-body p-4">
+                <h3 className="card-title text-lg font-semibold line-clamp-1">
+                  {event.title}
+                </h3>
+                <p className="text-gray-500 dark:text-gray-300 text-sm mb-2 line-clamp-2">
                   {event.description}
                 </p>
-                <h2>
-                  Type:
-                  <span className="badge badge-dash badge-sm">
+
+                {/* Badges */}
+                <div className="flex flex-wrap items-center gap-2 text-sm">
+                  <span className="badge badge-primary badge-outline">
                     {event.eventType}
                   </span>
-                </h2>
-                <h2>
-                  Location:
-                  <span className="badge badge-sm border-gray-600 ml-1">
-                    {event.location}
-                  </span>
-                </h2>
-                <p className="text-gray-600 dark:text-gray-300">
-                  Date:{" "}
+                  <span className="badge badge-ghost">{event.location}</span>
+                </div>
+
+                {/* Date */}
+                <p className="text-gray-600 dark:text-gray-300 text-xs mt-2">
+                  📅{" "}
                   {new Date(event.date).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "short",
                     day: "numeric",
                   })}
                 </p>
-
-                <div className="card-actions justify-end"></div>
               </div>
             </div>
           ))}
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 

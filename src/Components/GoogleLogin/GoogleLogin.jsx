@@ -4,7 +4,10 @@ import { useLocation, useNavigate } from "react-router";
 const SocialLogin = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/"; // fallback path
+
+  // If there's a from path, use it, otherwise default to home
+  const from = location.state?.from?.pathname || "/";
+  console.log(location.state?.pathname);
 
   const { GoogleSignIn } = useContext(AuthContext);
   const handleGoogleLogin = () => {

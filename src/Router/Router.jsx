@@ -72,9 +72,9 @@ export const router = createBrowserRouter([
       {
         path: "/event-details/:id",
         element: (
-          <PrivateRoute>
+          <>
             <EventDetails />
-          </PrivateRoute>
+          </>
         ),
         loader: ({ params }) =>
           fetch(`https://event-management-server-five.vercel.app/events/${params.id}`),
