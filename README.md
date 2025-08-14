@@ -10,7 +10,7 @@
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="https://github.com/ashiful2002/ashiful2002/blob/main/sodev.jpeg" alt="Home Page" width="700" />
+  <img src="https://raw.githubusercontent.com/ashiful2002/Event_management_app/refs/heads/main/src/assets/event_management.png" alt="Home Page" width="700" />
  
 </p>
 
